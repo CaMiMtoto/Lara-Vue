@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Alerts from '@/components/Alerts.vue';
 import InputError from '@/components/InputError.vue';
 import Pagination from '@/components/Pagination.vue';
 import { Button } from '@/components/ui/button';
@@ -8,6 +9,7 @@ import { Select } from '@/components/ui/select';
 import { TextArea } from '@/components/ui/text-area';
 import Layout from '@/layouts/AppLayout.vue';
 import { BreadcrumbItem } from '@/types';
+import { Flash } from '@/types/flash';
 import { Head, router, useForm } from '@inertiajs/vue3';
 import { initDropdowns, Modal } from 'flowbite';
 import { debounce } from 'lodash';
@@ -40,6 +42,7 @@ const props = defineProps<{
         search?: string;
         per_page?: number;
     };
+    flash: Flash;
 }>();
 const filters = ref({
     search: props.filters.search ?? '',
@@ -123,6 +126,8 @@ const handleDelete = (id: number) => {
 <template>
     <Head title="Performance Matrix" />
     <Layout :breadcrumbs="breadcrumbs">
+        <Alerts :flash="flash" />
+
         <div class="relative overflow-x-auto border border-slate-200 p-4 shadow-xs sm:rounded-lg">
             <div class="mb-4 flex items-center justify-between">
                 <div>

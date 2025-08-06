@@ -62,6 +62,7 @@ class PerformanceContractController extends Controller
     public function destroy(PerformanceContract $contract)
     {
         try {
+            throw new \Exception('test');
             $contract->delete();
         } catch (\Exception $e) {
             info($e->getMessage());
